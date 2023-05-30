@@ -30,7 +30,8 @@ export default NextAuth({
           password: credentials.password,
         };
         console.log(payload)
-        const res = await axios.post(`${process.env.API_URL}`,{identifier:payload.identifier,password:payload.password})
+        console.log(process.env.API_URL)
+        const res = await axios.post(`${process.env.API_URL}/auth/local`,{identifier:payload.identifier,password:payload.password})
         console.log(res)
         const user = await res.data.user
 
@@ -56,8 +57,8 @@ export default NextAuth({
       if (account && user) {
         return {
           ...token,
-          accessToken: user.token,
-          refreshToken: user.refreshToken,
+          accessToken: user?.token,
+          refreshToken: user?.refreshToken,
         };
       }
       return token;

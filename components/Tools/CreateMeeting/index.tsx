@@ -65,7 +65,7 @@ const Index: React.FC<CustomModalProps> = ({ isOpen, onClose,  contactName,date,
       Stage: 'Meeting'
     };
     axios
-      .post('http://localhost:1337/api/meetings', {data:data})
+      .post(`${process.env.API_URL}/meetings`, {data:data})
       .then((response) => {
         if (response) {
           toast({
@@ -96,10 +96,11 @@ const Index: React.FC<CustomModalProps> = ({ isOpen, onClose,  contactName,date,
     const getUserRole = async () => {
       const user = await getSession();
       setRole(user?.user?.frontrole);
+      console.log(user)
     };
 
     const getUsers = async () => {
-      const response = await axios.get("http://localhost:1337/api/users");
+      const response = await axios.get(`${process.env.API_URL}/users`);
       setUsers(response.data);
     };
 
@@ -132,7 +133,7 @@ const Index: React.FC<CustomModalProps> = ({ isOpen, onClose,  contactName,date,
           <ModalBody>
             {date ?<> <FormControl id="Date" isRequired>
             <FormLabel>Date</FormLabel>
-            <Input type="date" name="date" value={datet} onChange={(e)=> setdatet(e.target.value)} />
+            <Input type="date" name="date" value={datet} onChange={(e)=> setdatet(e.target.value)} isRequired />
           </FormControl></>: <></>}
             <FormControl id="contactName" isRequired>
               <FormLabel>Contacto</FormLabel>

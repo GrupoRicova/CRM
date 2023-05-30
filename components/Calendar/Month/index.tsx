@@ -66,7 +66,7 @@ const handleViewMeeting = (meeting: React.SetStateAction<Meeting | undefined> ) 
   setIsModalOpen2(true);
 };
 console.log(session?.user)
-const { data: meetings, mutate } = useSWR('http://localhost:1337/api/meetings', fetcher);
+const { data: meetings, mutate } = useSWR(`${process.env.API_URL}/meetings`, fetcher);
 
 async function fetcher(url: string) {
   try {

@@ -264,7 +264,7 @@ const getLocations = async () => {
   const handlechange = async () => {
     console.log(searchParams)
    if(getbyloc){
-    const response = await axios.post(`http://localhost:3000/api/properties/location?location=${loc}`, searchParams,
+    const response = await axios.post(`/api/properties/location?location=${loc}`, searchParams,
     {
       timeout: 10000 
     }
@@ -272,7 +272,7 @@ const getLocations = async () => {
      console.log(response.data);
      await setproperties(response.data.properties);
    }else if(!getbyloc){
-    const response = await axios.post('http://localhost:3000/api/properties', searchParams,
+    const response = await axios.post('/api/properties', searchParams,
     {
       timeout: 10000 
     }
@@ -312,7 +312,7 @@ const getLocations = async () => {
      
     }
     console.log(data)
-    axios.post('http://localhost:1337/api/meetings', {data:data})
+    axios.post('/api/meetings', {data:data})
       .then((response) => {
         if (response) {
           toast({
